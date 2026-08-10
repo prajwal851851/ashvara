@@ -11,7 +11,8 @@
 
 /* Framed media: keep explicit mobile heights; only stretch on desktop */
 .about-split-exact__media.clip-reveal,
-.wellness-calm__center.clip-reveal {
+.wellness-calm__center.clip-reveal,
+.wellness-parallax-reveal.clip-reveal {
   min-height: inherit;
 }
 
@@ -26,4 +27,9 @@
 .wellness-calm__center > .clip-reveal__inner {
   position: absolute;
   inset: 0;
+}
+
+.wellness-parallax-reveal > .clip-reveal__inner {
+  width: 100%;
+  height: auto;
 }

@@ -247,6 +247,18 @@
   overflow: hidden;
 }
 
+@media (max-width: 1023px) {
+  .about-split-exact {
+    min-height: 0;
+  }
+
+  .about-split-exact__media {
+    height: min(40vw, 240px);
+    min-height: 170px;
+    max-height: 260px;
+  }
+}
+
 @media (min-width: 1024px) {
   .about-split-exact__media {
     height: 100%;

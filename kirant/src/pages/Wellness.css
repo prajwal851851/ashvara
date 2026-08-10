@@ -85,13 +85,17 @@
   color: #fff !important;
 }
 
+.wellness-parallax-reveal {
+  width: 100%;
+  max-width: 100%;
+}
+
 .wellness-parallax {
   position: relative;
   width: 100%;
   max-width: 100%;
   height: 80vh;
   overflow: hidden;
-  border-radius: 0;
 }
 
 .wellness-parallax__inner {
@@ -103,12 +107,6 @@
   will-change: transform;
 }
 
-.wellness-parallax__inner--static {
-  top: 0;
-  height: 100%;
-  will-change: auto;
-}
-
 .wellness-parallax__inner img {
   width: 100%;
   height: 100%;
@@ -116,46 +114,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-}
-
-@media (max-width: 900px) {
-  .wellness-page {
-    overflow-x: hidden;
-  }
-
-  .wellness-hero {
-    min-height: 70dvh;
-    max-height: 85dvh;
-  }
-
-  .wellness-hero video {
-    height: 70dvh;
-    min-height: 70dvh;
-    max-height: 85dvh;
-  }
-
-  .wellness-split {
-    min-height: 0;
-    gap: var(--space-6);
-  }
-
-  .wellness-parallax {
-    height: min(42vh, 300px);
-    min-height: 200px;
-    max-height: 320px;
-  }
-
-  .wellness-parallax__inner,
-  .wellness-parallax__inner--static {
-    top: 0;
-    height: 100%;
-  }
-
-  .wellness-calm__center {
-    height: min(48vw, 280px);
-    min-height: 200px;
-    max-height: 300px;
-  }
 }
 
 /* The Calm — 3-column layout matching original */
@@ -192,7 +150,12 @@
   color: #18181b;
 }
 
-.wellness-calm__left img {
+.wellness-calm__side-media {
+  width: 100%;
+  overflow: hidden;
+}
+
+.wellness-calm__left .wellness-calm__side-media img {
   width: 100%;
   max-width: 280px;
   aspect-ratio: 3 / 2;
@@ -201,7 +164,7 @@
 }
 
 @media (min-width: 1024px) {
-  .wellness-calm__left img {
+  .wellness-calm__left .wellness-calm__side-media img {
     max-width: none;
   }
 }
@@ -231,7 +194,7 @@
   display: block;
 }
 
-.wellness-calm__right img {
+.wellness-calm__right .wellness-calm__side-media img {
   width: 100%;
   max-width: 320px;
   aspect-ratio: 4 / 3;
@@ -240,7 +203,7 @@
 }
 
 @media (min-width: 1024px) {
-  .wellness-calm__right img {
+  .wellness-calm__right .wellness-calm__side-media img {
     max-width: none;
   }
 }
@@ -257,6 +220,68 @@
   color: #3f3f46;
   line-height: 1.7;
   text-align: justify;
+}
+
+/* Mobile calm: lead → center → two sides in a row → copy (no stacked full images) */
+@media (max-width: 1023px) {
+  .wellness-calm__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .wellness-calm__left {
+    grid-column: 1 / -1;
+    display: contents;
+  }
+
+  .wellness-calm__lead {
+    grid-column: 1 / -1;
+  }
+
+  .wellness-calm__left .wellness-calm__side-media {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .wellness-calm__center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: min(52vw, 320px);
+    min-height: 220px;
+    max-height: 340px;
+  }
+
+  .wellness-calm__right {
+    display: contents;
+  }
+
+  .wellness-calm__right .wellness-calm__side-media {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .wellness-calm__copy {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
+  .wellness-calm__left .wellness-calm__side-media img,
+  .wellness-calm__right .wellness-calm__side-media img {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .wellness-parallax {
+    height: 55vh;
+    min-height: 240px;
+    max-height: 420px;
+  }
+
+  .wellness-split {
+    min-height: 0;
+  }
 }
 
 .wellness-water {
