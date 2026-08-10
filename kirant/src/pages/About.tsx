@@ -14,69 +14,123 @@ function AboutKeyholeHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const maskGroupRef = useRef<SVGGElement>(null);
   const [ready, setReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 900px)").matches : false
+  );
   const [view, setView] = useState({ width: 1778, height: 1000, centerX: 889 });
 
   useEffect(() => {
     setReady(true);
+    const mq = window.matchMedia("(max-width: 900px)");
+    const syncMobile = () => setIsMobile(mq.matches);
+    syncMobile();
+    mq.addEventListener("change", syncMobile);
+
     const measure = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
-      const height = rect.height || window.innerHeight;
+      const height = Math.max(rect.height || window.innerHeight, 1);
       const width = ((rect.width || window.innerWidth) / height) * 1000;
       setView({ width, height: 1000, centerX: width / 2 });
     };
     measure();
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      mq.removeEventListener("change", syncMobile);
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   useGSAP(
     () => {
+      if (isMobile) return;
       const section = sectionRef.current;
       const maskGroup = maskGroupRef.current;
       if (!section || !maskGroup) return;
 
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 320px)", () => {
-        const state = { maskScale: 0.1 };
-        const applyMask = () => {
-          maskGroup.setAttribute(
-            "transform",
-            `translate(${view.centerX}, 500) scale(${state.maskScale}) translate(${-view.centerX}, -500)`
-          );
-        };
-        applyMask();
-        gsap.set(".about-reveal-copy", { opacity: 0, y: 40 });
+      const state = { maskScale: 0.1 };
+      const applyMask = () => {
+        maskGroup.setAttribute(
+          "transform",
+          `translate(${view.centerX}, 500) scale(${state.maskScale}) translate(${-view.centerX}, -500)`
+        );
+      };
+      applyMask();
+      gsap.set(".about-reveal-copy", { opacity: 0, y: 40 });
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "+=150%",
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-          onUpdate: applyMask,
-        });
-
-        tl.to(state, { maskScale: 25, ease: "power2.inOut" }, 0);
-        tl.to(".about-reveal-copy", { opacity: 1, y: 0, ease: "power2.out" }, 0.3);
-
-        return () => {
-          tl.scrollTrigger?.kill();
-          tl.kill();
-        };
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=150%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+        onUpdate: applyMask,
       });
 
-      return () => mm.revert();
+      tl.to(state, { maskScale: 25, ease: "power2.inOut" }, 0);
+      tl.to(".about-reveal-copy", { opacity: 1, y: 0, ease: "power2.out" }, 0.3);
+
+      return () => {
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
     },
-    { scope: sectionRef, dependencies: [view.centerX, ready] }
+    { scope: sectionRef, dependencies: [view.centerX, ready, isMobile] }
   );
 
   const cx = view.centerX;
   const keyholePath = `M ${cx - 60},490 A 100,100 0 1,1 ${cx + 60},490 L ${cx + 120},690 L ${cx - 120},690 Z`;
+
+  const sideCopy = (
+    <div
+      className={`about-reveal-copy about-keyhole__side-copy${
+        isMobile ? " about-keyhole__side-copy--mobile" : ""
+      }`}
+    >
+      <div className="about-keyhole__side about-keyhole__side--left">
+        <h3>
+          Born from the
+          <br />
+          Spirit of the Hills
+        </h3>
+      </div>
+      <div className="about-keyhole__side about-keyhole__side--right">
+        <h3>
+          Inspired by stillness
+          <br />
+          of ridge &amp; sky.
+        </h3>
+      </div>
+    </div>
+  );
+
+  /* Mobile: static photo hero — SVG mask + pin breaks on iOS/Android */
+  if (isMobile) {
+    return (
+      <section ref={sectionRef} className="about-keyhole about-keyhole--mobile">
+        <div className="about-keyhole__fallback">
+          <img
+            src="/images/ashvara/about-hero.jpg"
+            alt={`${brand.name} heritage`}
+            draggable={false}
+          />
+          <div className="about-keyhole__fallback-shade" />
+        </div>
+        <div className="about-keyhole__titles about-keyhole__titles--on-photo">
+          <h1>The Story of {brand.name}</h1>
+          <p>Where Legacy Becomes Luxury</p>
+        </div>
+        {sideCopy}
+        <a href="#about-intro" className="about-keyhole__scroll">
+          Scroll Down
+        </a>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="about-keyhole">
@@ -140,22 +194,7 @@ function AboutKeyholeHero() {
           </div>
         ) : null}
 
-        <div className="about-reveal-copy about-keyhole__side-copy">
-          <div className="about-keyhole__side about-keyhole__side--left">
-            <h3>
-              Born from the
-              <br />
-              Spirit of the Hills
-            </h3>
-          </div>
-          <div className="about-keyhole__side about-keyhole__side--right">
-            <h3>
-              Inspired by stillness
-              <br />
-              of ridge &amp; sky.
-            </h3>
-          </div>
-        </div>
+        {sideCopy}
       </div>
       <a href="#about-intro" className="about-keyhole__scroll">
         Scroll Down
@@ -195,8 +234,13 @@ export function About() {
     const onScroll = () => setHintHidden(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     const refresh = () => ScrollTrigger.refresh();
-    window.setTimeout(refresh, 400);
-    return () => window.removeEventListener("scroll", onScroll);
+    const t1 = window.setTimeout(refresh, 200);
+    const t2 = window.setTimeout(refresh, 800);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
   }, []);
 
   return (

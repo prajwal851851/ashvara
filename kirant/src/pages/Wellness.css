@@ -88,8 +88,10 @@
 .wellness-parallax {
   position: relative;
   width: 100%;
+  max-width: 100%;
   height: 80vh;
   overflow: hidden;
+  border-radius: 0;
 }
 
 .wellness-parallax__inner {
@@ -101,11 +103,59 @@
   will-change: transform;
 }
 
+.wellness-parallax__inner--static {
+  top: 0;
+  height: 100%;
+  will-change: auto;
+}
+
 .wellness-parallax__inner img {
   width: 100%;
   height: 100%;
+  max-width: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+}
+
+@media (max-width: 900px) {
+  .wellness-page {
+    overflow-x: hidden;
+  }
+
+  .wellness-hero {
+    min-height: 70dvh;
+    max-height: 85dvh;
+  }
+
+  .wellness-hero video {
+    height: 70dvh;
+    min-height: 70dvh;
+    max-height: 85dvh;
+  }
+
+  .wellness-split {
+    min-height: 0;
+    gap: var(--space-6);
+  }
+
+  .wellness-parallax {
+    height: min(42vh, 300px);
+    min-height: 200px;
+    max-height: 320px;
+  }
+
+  .wellness-parallax__inner,
+  .wellness-parallax__inner--static {
+    top: 0;
+    height: 100%;
+  }
+
+  .wellness-calm__center {
+    height: min(48vw, 280px);
+    min-height: 200px;
+    max-height: 300px;
+  }
 }
 
 /* The Calm — 3-column layout matching original */
@@ -158,6 +208,8 @@
 
 .wellness-calm__center {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   height: 60vh;
   min-height: 60vh;
   overflow: hidden;
@@ -173,7 +225,9 @@
 .wellness-calm__center img {
   width: 100%;
   height: 100%;
+  max-width: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 

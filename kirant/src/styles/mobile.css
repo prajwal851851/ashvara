@@ -311,19 +311,36 @@
   }
 
   /* —— Wellness —— */
+  .wellness-page {
+    overflow-x: hidden;
+  }
+
   .wellness-hero {
-    min-height: 100dvh;
+    min-height: 70dvh;
+    max-height: 85dvh;
   }
 
   .wellness-hero video {
-    height: 100dvh;
-    min-height: 100dvh;
+    height: 70dvh;
+    min-height: 70dvh;
+    max-height: 85dvh;
+    width: 100%;
+    object-fit: cover;
   }
 
   .wellness-split {
     grid-template-columns: 1fr;
     min-height: 0;
     padding-block: var(--space-section);
+    gap: var(--space-6);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .wellness-split > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .wellness-split__copy h2 {
@@ -331,26 +348,94 @@
   }
 
   .wellness-parallax {
-    height: 55vh;
+    height: min(42vh, 280px);
+    min-height: 200px;
+    max-height: 320px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .wellness-parallax__inner,
+  .wellness-parallax__inner--static {
+    top: 0;
+    height: 100%;
+  }
+
+  .wellness-calm {
+    overflow-x: hidden;
+  }
+
+  .wellness-calm__layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+    width: 100%;
+    max-width: 100%;
   }
 
   .wellness-calm__lead h2 {
     font-size: clamp(2.25rem, 12vw, 3.5rem);
   }
 
+  .wellness-calm__left,
+  .wellness-calm__right {
+    width: 100%;
+    max-width: 100%;
+    gap: var(--space-6);
+  }
+
   .wellness-calm__left img,
   .wellness-calm__right img {
     max-width: 100%;
-    margin-inline: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-inline: 0;
+    object-fit: cover;
   }
 
-  .wellness-calm__center {
-    height: 50vh;
-    min-height: 240px;
+  .wellness-calm__left .clip-reveal,
+  .wellness-calm__right .clip-reveal {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .wellness-calm__center,
+  .wellness-calm__center.clip-reveal {
+    width: 100%;
+    max-width: 100%;
+    height: min(48vw, 260px);
+    min-height: 200px;
+    max-height: 280px;
+    overflow: hidden;
+  }
+
+  .wellness-calm__center > .clip-reveal__inner {
+    position: absolute;
+    inset: 0;
+  }
+
+  .wellness-calm__center img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .wellness-spaces__item {
     width: min(82vw, 320px);
+  }
+
+  .wellness-spaces__item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .wellness-water {
+    min-height: 45vh;
+    max-height: 55vh;
   }
 
   .wellness-water p {
@@ -359,8 +444,10 @@
   }
 
   /* —— About —— */
-  .about-keyhole {
+  .about-keyhole,
+  .about-keyhole--mobile {
     height: 100dvh;
+    min-height: 100svh;
   }
 
   .about-keyhole__titles {
@@ -377,15 +464,16 @@
   }
 
   .about-keyhole__side h3 {
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
-    max-width: 12ch;
+    font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    max-width: 14ch;
   }
 
   .about-split-exact {
     min-height: 0;
   }
 
-  .about-split-exact__media {
+  .about-split-exact__media,
+  .about-split-exact__media.clip-reveal {
     height: 42vh;
     min-height: 220px;
   }

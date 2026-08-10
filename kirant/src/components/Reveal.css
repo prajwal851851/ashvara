@@ -9,11 +9,17 @@
   height: 100%;
 }
 
-/* Framed media: fill parent so absolute/cover images have a box */
+/* Framed media: keep explicit mobile heights; only stretch on desktop */
 .about-split-exact__media.clip-reveal,
 .wellness-calm__center.clip-reveal {
-  height: 100%;
   min-height: inherit;
+}
+
+@media (min-width: 1024px) {
+  .about-split-exact__media.clip-reveal,
+  .wellness-calm__center.clip-reveal {
+    height: 100%;
+  }
 }
 
 .about-split-exact__media > .clip-reveal__inner,

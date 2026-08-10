@@ -21,17 +21,32 @@ function ParallaxImage({
   priority?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px), (prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   return (
     <div ref={ref} className="wellness-parallax">
-      <motion.div style={{ y }} className="wellness-parallax__inner">
-        <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} />
-      </motion.div>
+      {reduceMotion ? (
+        <div className="wellness-parallax__inner wellness-parallax__inner--static">
+          <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} />
+        </div>
+      ) : (
+        <motion.div style={{ y }} className="wellness-parallax__inner">
+          <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} />
+        </motion.div>
+      )}
     </div>
   );
 }
