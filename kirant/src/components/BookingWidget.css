@@ -1,0 +1,44 @@
+.booking {
+  display: grid;
+  gap: var(--space-5);
+  width: min(100%, 320px);
+  padding: var(--space-7);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-1);
+}
+
+.booking__field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.booking__field label {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-inverse);
+  opacity: 0.7;
+}
+
+.booking__field input,
+.booking__field select {
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
+}
+
+.booking__msg {
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.booking__msg--error {
+  color: #8b1e1e;
+}
+
+.booking__msg--ok {
+  color: var(--color-surface-strong);
+}

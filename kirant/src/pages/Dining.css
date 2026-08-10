@@ -1,0 +1,301 @@
+.dining-page {
+  background: #000;
+}
+
+.dining-hero-anim {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  user-select: none;
+}
+
+.dining-hero-anim__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.dining-hero-anim__bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dining-hero-anim__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.2) 45%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+.dining-hero-anim__veil {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.dining-hero-anim__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+}
+
+.dining-hero-anim__clip-text {
+  font-family: var(--font-family-display), Georgia, "Times New Roman", serif;
+  font-size: 20vw;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: #fff;
+}
+
+@media (min-width: 768px) {
+  .dining-hero-anim__clip-text {
+    font-size: 18vw;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dining-hero-anim__clip-text {
+    font-size: 15vw;
+  }
+}
+
+.dining-hero-anim__masked {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dining-hero-anim__clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+.dining-hero-anim__clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  display: block;
+}
+
+.dining-hero-anim__scroll {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.dining-intro p {
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+  font-size: var(--font-size-xl);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.dining-visuals__grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .dining-visuals__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dining-visuals__grid img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.dining-dishes__grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.dining-feature img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  display: block;
+}
+
+.dining-feature__grid {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .dining-feature__grid {
+    grid-template-columns: 1fr 1.1fr;
+    gap: calc(var(--space-8) * 2);
+  }
+
+  .dining-feature--reverse .dining-feature__grid {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.dining-feature h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  text-transform: uppercase;
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.dining-feature p:not(.eyebrow) {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 34rem;
+}
+
+.dining-feature img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+}
+
+.dining-dishes__grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.dining-mood {
+  position: relative;
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.dining-mood > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+.dining-mood p {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+  text-align: center;
+  font-size: var(--font-size-xl);
+  line-height: 1.7;
+}
+
+.dining-dishes__header {
+  display: grid;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+@media (min-width: 800px) {
+  .dining-dishes__header {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+}
+
+.dining-dishes__header h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  text-transform: uppercase;
+}
+
+.dining-dishes__header p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.dining-dishes__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 900px) {
+  .dining-dishes__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dining-dishes__grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.dining-cta {
+  position: relative;
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dining-cta > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4);
+}
+
+.dining-cta__content {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+  padding: var(--space-8);
+}
+
+.dining-cta h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--space-6);
+}
+
+.dining-cta p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+}

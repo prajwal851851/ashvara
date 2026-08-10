@@ -1,0 +1,97 @@
+.hero-pin {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  height: 100dvh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.hero-pin__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.hero-pin__layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-pin__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.1) 45%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-pin__layer--second {
+  z-index: 2;
+}
+
+.hero-pin__brand {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.5vh, 1rem);
+  margin: 0;
+  pointer-events: none;
+  text-align: center;
+  padding-inline: 1rem;
+}
+
+.hero-pin__welcome {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-size: clamp(0.8rem, 2.1vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #f3efe6;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    0 0 24px rgba(0, 0, 0, 0.45);
+}
+
+.hero-pin__name {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f7f3ea;
+  -webkit-text-fill-color: #f7f3ea;
+  text-shadow:
+    0 2px 0 rgba(37, 88, 66, 0.9),
+    0 4px 28px rgba(0, 0, 0, 0.65),
+    0 0 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-pin__scroll {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}

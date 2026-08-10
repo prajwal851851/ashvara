@@ -1,0 +1,46 @@
+.audio-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}
+
+.audio-toggle__btn {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.audio-toggle__icon {
+  width: 6vw;
+  height: 6vw;
+  max-width: 32px;
+  max-height: 32px;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .audio-toggle__icon {
+    width: 3vw;
+    height: 3vw;
+  }
+}
+
+@media (min-width: 1280px) {
+  .audio-toggle__icon {
+    width: 1.2vw;
+    height: 1.2vw;
+  }
+}
+
+.audio-toggle__icon.is-invert {
+  filter: invert(1);
+}

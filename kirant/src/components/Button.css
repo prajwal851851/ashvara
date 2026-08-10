@@ -1,0 +1,112 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-4) var(--space-8);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-none);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease),
+    color var(--motion-duration-fast) var(--motion-ease),
+    border-color var(--motion-duration-fast) var(--motion-ease),
+    opacity var(--motion-duration-fast) var(--motion-ease),
+    transform var(--motion-duration-instant) var(--motion-ease);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  color: var(--color-accent-brand);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn--outline-gold {
+  background: transparent;
+  color: var(--color-accent-brand);
+  border-color: var(--color-accent-brand);
+}
+
+.btn--outline-gold:hover:not(:disabled) {
+  background: var(--color-accent-brand);
+  color: var(--color-surface-base);
+}
+
+.btn--solid {
+  background: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
+  border-color: var(--color-surface-inverse);
+}
+
+.btn--solid:hover:not(:disabled) {
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.btn--filled-strong {
+  background: var(--color-surface-strong);
+  color: var(--color-text-on-strong);
+  border-color: var(--color-surface-strong);
+}
+
+.btn--filled-strong:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.btn--loading .btn__label--hidden {
+  opacity: 0;
+}
+
+.btn__spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-xs);
+  animation: spin var(--motion-duration-slow) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

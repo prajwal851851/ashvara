@@ -1,0 +1,185 @@
+.room-showcase {
+  position: relative;
+  width: 100%;
+  height: 60svh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+@media (min-width: 1280px) {
+  .room-showcase {
+    height: 100svh;
+  }
+}
+
+.room-showcase__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.room-showcase__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.room-showcase__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.room-showcase__card {
+  position: absolute;
+  z-index: 30;
+  left: 1rem;
+  bottom: 1rem;
+  width: min(90vw, 22rem);
+  background: #f7f4ef;
+  color: #255842;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 768px) {
+  .room-showcase__card {
+    left: 2rem;
+    bottom: 2rem;
+    width: min(50vw, 24rem);
+    padding: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .room-showcase__card {
+    left: 4rem;
+    bottom: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .room-showcase__card {
+    left: 6rem;
+    bottom: 4rem;
+    width: min(30vw, 26rem);
+  }
+}
+
+.room-showcase__card h3 {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #255842;
+}
+
+.room-showcase__bar {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.room-showcase__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.room-showcase__nav > button {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(63, 63, 70, 0.45);
+  background: transparent;
+  color: #3f3f46;
+  cursor: pointer;
+  transform: rotate(45deg);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.room-showcase__nav > button:hover {
+  border-color: #255842;
+  background: rgba(37, 88, 66, 0.06);
+  color: #255842;
+}
+
+.room-showcase__nav > button svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  transform: rotate(-45deg);
+}
+
+.room-showcase__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.room-showcase__dots span {
+  display: block;
+  width: 0.375rem;
+  height: 0.375rem;
+  background: #d4d4d8;
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.room-showcase__dots span.is-active {
+  width: 1rem;
+  background: #255842;
+}
+
+.room-showcase__card .btn {
+  border-color: #255842;
+  color: #255842;
+  min-height: 2.5rem;
+  padding-inline: 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.room-showcase__card .btn:hover:not(:disabled) {
+  background: #255842;
+  color: #f7f4ef;
+}
+
+.room-showcase__scroll {
+  position: absolute;
+  z-index: 30;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (min-width: 768px) {
+  .room-showcase__scroll {
+    display: none;
+  }
+}

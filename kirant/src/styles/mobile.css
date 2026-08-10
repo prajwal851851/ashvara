@@ -1,0 +1,448 @@
+/* Mobile-first responsive overrides for Ashvara */
+
+@media (max-width: 767px) {
+  :root {
+    --font-size-display-sm: 1.75rem;
+    --font-size-display-md: 2.25rem;
+    --font-size-display-lg: 3rem;
+    --font-size-display-xl: 4.5rem;
+    --font-size-display-hero: clamp(2.5rem, 16vw, 5rem);
+    --space-section: calc(var(--space-8) * 2.5);
+    --space-section-lg: calc(var(--space-8) * 3.5);
+    --space-gutter: 1rem;
+  }
+
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .container,
+  .container--wide {
+    padding-inline: var(--space-gutter);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.14em;
+  }
+
+  /* —— Preloader —— */
+  .preloader__keyhole {
+    width: min(88vw, 420px);
+  }
+
+  .preloader__digits {
+    font-size: 18vw;
+    padding-bottom: 2vh;
+  }
+
+  .preloader__actions {
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    min-height: 0;
+    padding-inline: 1rem;
+  }
+
+  .preloader__buttons {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .preloader__buttons .btn--solid,
+  .preloader__buttons .btn--outline {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* —— Hero —— */
+  .hero-pin__brand {
+    gap: 0.4rem;
+    padding-inline: 0.75rem;
+  }
+
+  .hero-pin__welcome {
+    letter-spacing: 0.28em;
+    font-size: 0.65rem;
+  }
+
+  .hero-pin__name {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-pin__scroll {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  /* —— Home —— */
+  .home-intro__text p {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+  }
+
+  .home-welcome__copy h2 {
+    font-size: clamp(1.55rem, 7.5vw, 2.1rem);
+  }
+
+  .home-stats__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .home-stats__card {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .home-stats__value {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    flex-wrap: wrap;
+  }
+
+  .home-cta h2 {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+  }
+
+  .home-dining__title {
+    font-size: clamp(2.25rem, 14vw, 4rem);
+    letter-spacing: 0.04em;
+  }
+
+  .home-testimonials blockquote p {
+    font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  }
+
+  /* —— Room showcase —— */
+  .room-showcase {
+    height: 70svh;
+  }
+
+  .room-showcase__card {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto;
+    padding: var(--space-4);
+  }
+
+  .room-showcase__card h3 {
+    font-size: 1.2rem;
+  }
+
+  .room-showcase__bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .room-showcase__nav {
+    justify-content: space-between;
+  }
+
+  .room-showcase__dots {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .room-showcase__card .btn {
+    width: 100%;
+  }
+
+  .room-showcase__scroll {
+    display: none;
+  }
+
+  /* —— Dining reveal —— */
+  .dining-reveal__line {
+    font-size: clamp(2rem, 11vw, 3.25rem);
+    letter-spacing: 0.08em;
+    padding-inline: 0.5rem;
+  }
+
+  /* —— Moments —— */
+  .moments__bars {
+    padding-right: 3.25rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  /* —— Testimonials —— */
+  .testimonials__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  /* —— Footer —— */
+  .site-footer {
+    padding-top: 4.25rem;
+  }
+
+  .site-footer__cta {
+    display: flex;
+  }
+
+  .site-footer__cta h2 {
+    font-size: 1.2rem;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .site-footer__nav {
+    place-items: center;
+    text-align: center;
+  }
+
+  .site-footer__connect {
+    text-align: center;
+    justify-self: center;
+  }
+
+  .site-footer__marque {
+    min-height: clamp(5.5rem, 18vh, 9rem);
+  }
+
+  .site-footer__marque-word {
+    font-size: clamp(2.75rem, 22vw, 5.5rem);
+  }
+
+  .site-footer--reveal {
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .site-footer-spacer {
+    min-height: 100dvh;
+  }
+
+  /* —— Gallery —— */
+  .gallery__controls {
+    bottom: max(1.25rem, env(safe-area-inset-bottom) + 0.5rem);
+    gap: 1rem;
+    width: calc(100% - 1.5rem);
+  }
+
+  .gallery__controls button {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  /* —— Rooms —— */
+  .rooms-hero {
+    min-height: 100dvh;
+  }
+
+  .rooms-hero__content {
+    padding: 5rem var(--space-gutter) var(--space-8);
+  }
+
+  .rooms-hero__content h1 {
+    font-size: clamp(1.85rem, 8vw, 2.75rem);
+  }
+
+  .rooms-hero__info {
+    grid-template-columns: 1fr;
+  }
+
+  .rooms-hero__info > div:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: var(--space-5);
+  }
+
+  .rooms-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rooms-discover__media {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .room-card h2 {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+  }
+
+  .room-card > p {
+    min-height: 0;
+  }
+
+  /* —— Dining —— */
+  .dining-hero-anim,
+  .dining-reveal {
+    height: 100dvh;
+  }
+
+  .dining-intro p,
+  .dining-mood p {
+    font-size: var(--font-size-lg);
+    padding-inline: var(--space-gutter);
+  }
+
+  .dining-dishes__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .dining-dishes__header h2 {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+  }
+
+  .dining-feature__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dining-feature h2 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .dining-cta {
+    min-height: 55vh;
+  }
+
+  .dining-cta__content {
+    padding: var(--space-6) var(--space-gutter);
+  }
+
+  /* —— Wellness —— */
+  .wellness-hero {
+    min-height: 100dvh;
+  }
+
+  .wellness-hero video {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .wellness-split {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-block: var(--space-section);
+  }
+
+  .wellness-split__copy h2 {
+    font-size: clamp(2.25rem, 14vw, 3.5rem);
+  }
+
+  .wellness-parallax {
+    height: 55vh;
+  }
+
+  .wellness-calm__lead h2 {
+    font-size: clamp(2.25rem, 12vw, 3.5rem);
+  }
+
+  .wellness-calm__left img,
+  .wellness-calm__right img {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .wellness-calm__center {
+    height: 50vh;
+    min-height: 240px;
+  }
+
+  .wellness-spaces__item {
+    width: min(82vw, 320px);
+  }
+
+  .wellness-water p {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    padding: var(--space-6);
+  }
+
+  /* —— About —— */
+  .about-keyhole {
+    height: 100dvh;
+  }
+
+  .about-keyhole__titles {
+    gap: var(--space-5);
+    padding-inline: var(--space-gutter);
+  }
+
+  .about-keyhole__titles h1 {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+  }
+
+  .about-keyhole__titles p {
+    font-size: clamp(1rem, 4vw, 1.35rem);
+  }
+
+  .about-keyhole__side h3 {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    max-width: 12ch;
+  }
+
+  .about-split-exact {
+    min-height: 0;
+  }
+
+  .about-split-exact__media {
+    height: 42vh;
+    min-height: 220px;
+  }
+
+  .about-split-exact__copy {
+    padding: var(--space-8) var(--space-gutter);
+  }
+
+  .about-split-exact__copy h2 {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+
+  .about-intro-exact__inner > p {
+    max-width: 100%;
+  }
+
+  .about-mountain-exact {
+    height: 70dvh;
+  }
+
+  .about-mountain-exact p,
+  .about-close-exact p {
+    max-width: 100%;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+  }
+
+  .about-values-exact p {
+    letter-spacing: 0.08em;
+    font-size: clamp(1.15rem, 5.5vw, 1.75rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .home-stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-intro__text p {
+    font-size: var(--font-size-md);
+  }
+
+  .room-showcase__card h3 {
+    font-size: 1.05rem;
+  }
+
+  .site-footer__nav {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .dining-dishes__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preloader__buttons .btn--solid,
+  .preloader__buttons .btn--outline {
+    min-width: 0;
+    width: min(100%, 240px);
+  }
+}
