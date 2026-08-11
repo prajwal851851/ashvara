@@ -86,7 +86,7 @@ function DiningHero() {
   return (
     <section ref={sectionRef} className="dining-hero-anim" aria-label="Dining">
       <div className="dining-hero-anim__bg">
-        <video src="/videos/dining-3.mp4" autoPlay muted loop playsInline />
+        <video src="/videos/dining-hero.mp4" autoPlay muted loop playsInline />
         <div className="dining-hero-anim__shade" />
       </div>
 
@@ -118,7 +118,7 @@ function DiningHero() {
             WebkitClipPath: `url(#${clipId})`,
           }}
         >
-          <video src="/videos/dining-3.mp4" autoPlay muted loop playsInline />
+          <video src="/videos/dining-hero.mp4" autoPlay muted loop playsInline />
         </div>
       </div>
 

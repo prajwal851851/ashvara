@@ -1,25 +1,126 @@
 .history-page {
   position: relative;
   z-index: 1;
-  background: transparent;
+  background: #1c1710;
   color: #fff;
   min-height: 100dvh;
+}
+
+html.footer-revealed .history-page {
+  background: transparent;
+}
+
+/* Immediate warm dawn plane — avoids pure black before WebGL paints */
+.history-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, #5a4020 0%, transparent 58%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, #0e0c09 0%, #1c1710 45%, #241c12 100%);
+}
+
+.history-atmosphere__glow {
+  position: absolute;
+  inset: 18% 10% 30%;
+  background: radial-gradient(circle at 50% 50%, rgba(232, 201, 106, 0.22), transparent 68%);
+  filter: blur(8px);
+  animation: history-glow 5.5s ease-in-out infinite alternate;
+}
+
+.history-atmosphere__mist {
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(12, 10, 8, 0.75), transparent);
+}
+
+@keyframes history-glow {
+  from {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.history-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.85rem;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, rgba(28, 23, 16, 0.35), rgba(28, 23, 16, 0.72));
+  transition: opacity 0.55s ease;
+}
+
+.history-page.is-ready .history-boot {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.history-boot__mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(232, 201, 106, 0.55);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(232, 201, 106, 0.08);
+  animation: history-boot-pulse 1.4s ease-in-out infinite;
+}
+
+.history-boot p {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 244, 220, 0.78);
+}
+
+@keyframes history-boot-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .history-canvas {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  background: #000;
-  pointer-events: auto;
+  background: #1c1710;
+  /* Don't trap wheel/touch — parallax listens on window */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s ease;
 }
 
-html.footer-revealed .history-canvas {
-  opacity: 0;
+.history-page.is-ready .history-canvas {
+  opacity: 1;
+}
+
+/* Clear all History overlays so the reveal footer can show */
+html.footer-revealed .history-canvas,
+html.footer-revealed .history-atmosphere,
+html.footer-revealed .history-progress,
+html.footer-revealed .history-scroll,
+html.footer-revealed .history-boot {
+  opacity: 0 !important;
   visibility: hidden;
-  transition: opacity 0.4s ease;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .history-canvas canvas {
@@ -89,15 +190,28 @@ html.footer-revealed .history-canvas {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0 clamp(1rem, 4vw, 3rem) 6vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  /* Keep title low so the guardian animal owns the center */
+  padding: 0 clamp(1rem, 4vw, 3rem) max(5vh, env(safe-area-inset-bottom));
+  text-align: center;
 }
 
 @media (min-width: 1280px) {
   .history-hero__inner {
-    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
   }
+}
+
+.history-hero__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 106, 0.9);
 }
 
 .history-hero__title {
@@ -110,6 +224,83 @@ html.footer-revealed .history-canvas {
   letter-spacing: 0.02em;
   color: #fff;
   -webkit-text-fill-color: #fff;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
+}
+
+.history-hero__sub {
+  margin: 0;
+  max-width: 28rem;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.04em;
+}
+
+/* Side chapter progress */
+.history-progress {
+  position: fixed;
+  right: clamp(0.65rem, 2vw, 1.25rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  pointer-events: auto;
+}
+
+.history-progress__dot {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.history-progress__dot:hover {
+  color: #fff;
+  border-color: rgba(232, 201, 106, 0.7);
+}
+
+.history-progress__dot.is-done {
+  border-color: rgba(232, 201, 106, 0.45);
+  color: rgba(232, 201, 106, 0.75);
+}
+
+.history-progress__dot.is-active {
+  color: #141816;
+  background: #e8c96a;
+  border-color: #e8c96a;
+  transform: scale(1.08);
+}
+
+.history-progress__dot:focus-visible {
+  outline: 2px solid #e8c96a;
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .history-progress {
+    right: 0.45rem;
+    gap: 0.4rem;
+  }
+
+  .history-progress__dot {
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 0.55rem;
+  }
 }
 
 /* —— Chapters —— */
@@ -129,6 +320,7 @@ html.footer-revealed .history-canvas {
   align-items: center;
   position: relative;
   padding-inline: clamp(1.25rem, 6vw, 6rem);
+  perspective: 900px;
 }
 
 .chapter-card {
@@ -142,11 +334,19 @@ html.footer-revealed .history-canvas {
   opacity: 0;
   text-align: left;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+  background: linear-gradient(
+    160deg,
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0.2) 100%
+  );
+  border: 1px solid rgba(232, 201, 106, 0.18);
+  backdrop-filter: blur(8px);
+  transform-style: preserve-3d;
 }
 
 .history-chapter__media {
   width: 100%;
-  max-width: 14rem;
+  max-width: 16rem;
   aspect-ratio: 16 / 11;
   overflow: hidden;
   border: 1px solid rgba(201, 168, 76, 0.55);
@@ -159,12 +359,7 @@ html.footer-revealed .history-canvas {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-@media (min-width: 900px) {
-  .history-chapter__media {
-    display: none; /* desktop relies on floating 3D frames */
-  }
+  will-change: transform;
 }
 
 .chapter-card--start {

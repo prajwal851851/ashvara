@@ -195,8 +195,11 @@
   padding-block: 1rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
+  position: relative;
+  z-index: 3;
 }
 
 .site-footer__legal p {
@@ -205,9 +208,61 @@
   color: #71717a;
 }
 
-.site-footer__legal span {
+.site-footer__legal > p span {
   color: #fff;
   font-weight: 500;
+}
+
+/* Matches "Designed & Developed by [brand]" credit style */
+.site-footer__credit {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.25s ease;
+}
+
+.site-footer__credit:hover {
+  opacity: 0.88;
+}
+
+.site-footer__credit-text {
+  font-family: var(--font-family-primary);
+  font-size: clamp(0.68rem, 1.2vw, 0.78rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.site-footer__credit-brand {
+  font-family: var(--font-family-primary);
+  font-size: clamp(0.7rem, 1.25vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #60a5fa;
+  white-space: nowrap;
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 767px) {
+  .site-footer__legal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .site-footer__credit {
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .site-footer__credit-text,
+  .site-footer__credit-brand {
+    font-size: 0.68rem;
+  }
 }
 
 .site-footer__marque {

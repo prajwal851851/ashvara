@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { brand } from "../data/brand";
+import { useLenis } from "../hooks/useLenis";
 import "./Footer.css";
 
 type Props = {
@@ -30,6 +31,7 @@ const NAV = [
  */
 export function Footer({ variant = "gold" }: Props) {
   const { pathname } = useLocation();
+  const { lenis } = useLenis();
   const footerRef = useRef<HTMLElement>(null);
   const [height, setHeight] = useState(0);
   const hidden = pathname === "/gallery";
@@ -60,25 +62,34 @@ export function Footer({ variant = "gold" }: Props) {
 
     const onScroll = () => {
       const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const nearEnd = max > 0 && window.scrollY >= max - 24;
+      const scrollY = lenis?.scroll ?? window.scrollY ?? doc.scrollTop;
+      const max = Math.max(
+        0,
+        (lenis?.limit ?? doc.scrollHeight - window.innerHeight)
+      );
+      const nearEnd = max > 0 && scrollY >= max - 48;
       doc.classList.toggle("footer-revealed", nearEnd);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    const unsub = lenis?.on("scroll", onScroll);
     onScroll();
 
     const t = window.setTimeout(() => {
       measure();
       ScrollTrigger.refresh();
+      onScroll();
     }, 200);
+    const t2 = window.setTimeout(onScroll, 800);
 
     return () => {
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", onScroll);
+      unsub?.();
       document.documentElement.classList.remove("footer-revealed");
       window.clearTimeout(t);
+      window.clearTimeout(t2);
     };
-  }, [pathname, variant, hidden]);
+  }, [pathname, variant, hidden, lenis]);
 
   useEffect(() => {
     const t = window.setTimeout(() => ScrollTrigger.refresh(), 80);
@@ -144,6 +155,16 @@ export function Footer({ variant = "gold" }: Props) {
             <p>
               © {brand.copyrightYear} <span>{brand.name}.</span> All rights reserved.
             </p>
+            <a
+              className="site-footer__credit"
+              href="https://www.facebook.com/profile.php?id=61589607377897"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Designed and developed by NepTech Solutions — open Facebook page"
+            >
+              <span className="site-footer__credit-text">Designed &amp; Developed by</span>
+              <span className="site-footer__credit-brand">NepTech Solutions</span>
+            </a>
           </div>
         </div>
 

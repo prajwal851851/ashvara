@@ -79,7 +79,12 @@ body {
   isolation: isolate;
 }
 
+/* Keep History dark while scrolling (avoids white flash); clear only for footer unveil */
 #main:has(.history-page) {
+  background: #1c1710;
+}
+
+html.footer-revealed #main:has(.history-page) {
   background: transparent;
 }
 

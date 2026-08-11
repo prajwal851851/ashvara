@@ -6,6 +6,8 @@ import { HeroPin } from "../components/HeroPin";
 import { RoomShowcase } from "../components/RoomShowcase";
 import { DiningReveal } from "../components/DiningReveal";
 import { BelongReveal } from "../components/BelongReveal";
+import { WelcomeStage } from "../components/WelcomeStage";
+import { StillnessInteract } from "../components/StillnessInteract";
 import { Moments } from "../components/Moments";
 import { Testimonials } from "../components/Testimonials";
 import { ScrollHint } from "../components/ScrollHint";
@@ -61,36 +63,7 @@ export function Home() {
 
       <RoomShowcase />
 
-      <section id="welcome" className="home-welcome section">
-        <div className="container home-welcome__grid">
-          <Reveal className="home-welcome__copy">
-            <h2>
-              A Legendary Welcome
-              <br />
-              Every Time
-            </h2>
-            <p>
-              Welcome to {brand.name} Hotel, where creativity meets functionality to craft
-              spaces that inspire. With a passion for design and a commitment to
-              excellence, we transform ordinary spaces into extraordinary experiences.
-            </p>
-            <p>
-              From our architectural spaces that honor local craft to our meticulously
-              designed culinary and wellness journeys, we invite you to immerse yourself in
-              a legacy of warmth and unforgettable elegance.
-            </p>
-            <Button to="/about" variant="filled-strong">
-              About Us
-            </Button>
-          </Reveal>
-          <Reveal className="home-welcome__media" delay={0.12}>
-            <img
-              src="/images/ashvara/welcome-legendary.jpg"
-              alt={`${brand.name} hotel courtyard and pool at dusk`}
-            />
-          </Reveal>
-        </div>
-      </section>
+      <WelcomeStage />
 
       <section className="home-stats section" aria-label="Hotel highlights">
         <div className="container home-stats__grid">
@@ -113,16 +86,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="home-wellness-banner" aria-label="Wellness atmosphere">
-        <motion.img
-          src="/images/ashvara/meditation.jpg"
-          alt="Guest meditating overlooking mountain sunset"
-          initial={{ scale: 1.12 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 1.4, ease: [0.25, 1, 0.5, 1] }}
-        />
-      </section>
+      <StillnessInteract />
 
       <DiningReveal />
       <Moments />

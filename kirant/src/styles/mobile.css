@@ -84,8 +84,8 @@
     line-height: 1.6;
   }
 
-  .home-welcome__copy h2 {
-    font-size: clamp(1.55rem, 7.5vw, 2.1rem);
+  .welcome-stage__copy h2 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
   }
 
   .home-stats__grid {

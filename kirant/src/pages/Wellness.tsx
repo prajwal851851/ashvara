@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { Button } from "../components/Button";
 import { Reveal, ClipReveal } from "../components/Reveal";
+import { WellnessHeroReel } from "../components/WellnessHeroReel";
 import { brand } from "../data/brand";
 import "./Wellness.css";
 
@@ -127,60 +128,10 @@ const SPLITS = [
 ];
 
 export function Wellness() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  /** Skip walking/branding intro on the original wellness reel */
-  const INTRO_SKIP_SEC = 7.5;
-
-  useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-
-    const jumpIntro = () => {
-      if (video.currentTime < INTRO_SKIP_SEC) {
-        video.currentTime = INTRO_SKIP_SEC;
-      }
-    };
-
-    const onLoaded = () => {
-      jumpIntro();
-      void video.play().catch(() => {});
-    };
-
-    const onTimeUpdate = () => {
-      // After natural loop reset to 0, skip branding again
-      if (video.currentTime > 0 && video.currentTime < INTRO_SKIP_SEC - 0.35) {
-        video.currentTime = INTRO_SKIP_SEC;
-      }
-    };
-
-    const onEnded = () => {
-      video.currentTime = INTRO_SKIP_SEC;
-      void video.play().catch(() => {});
-    };
-
-    video.addEventListener("loadedmetadata", onLoaded);
-    video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("ended", onEnded);
-    if (video.readyState >= 1) onLoaded();
-
-    return () => {
-      video.removeEventListener("loadedmetadata", onLoaded);
-      video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("ended", onEnded);
-    };
-  }, []);
-
   return (
     <div className="wellness-page">
       <section className="wellness-hero" aria-label="Spa treatment">
-        <video
-          ref={heroVideoRef}
-          src="/videos/wellness-video-1.mp4"
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-        />
+        <WellnessHeroReel />
         <motion.a
           href="#history"
           className="wellness-hero__scroll"
