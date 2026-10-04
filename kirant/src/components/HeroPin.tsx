@@ -64,7 +64,7 @@ export function HeroPin() {
     <section ref={sectionRef} className="hero-pin" aria-label="Hotel arrival">
       <div ref={frontRef} className="hero-pin__layer">
         <img
-          src="/images/ashvara/hero-second.png"
+          src="/images/ashvara/hero-lobby.jpg"
           alt={`${brand.name} grand courtyard at twilight`}
           draggable={false}
         />
